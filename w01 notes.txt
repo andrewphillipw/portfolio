@@ -1,0 +1,19 @@
+By Andrew Wright Sept 18, 2021
+Empathize with the End User
+
+Mobile is where the users are moving to; they have their heads in their phones, not their laptops.
+
+In short, everything needs to be designed for mobile firs. This is different than just doing a 
+responsive retrofitting (converting desktop to mobile), which does not prioritize catering to
+mobile users (the number of users will only continue to increase due to low-cost & ease of use).
+
+Anything that can be done to make it easier for the user should be done: reducing the cognitive
+load, creating seamless interface, and increasing reachability.
+
+Some examples of this:
+
+RELEVANT - an easier form; ask for only ESSENTIALS
+
+IMMEDIATE - pulling up the large numpad for number fields
+
+FRICTIONLESS - moving the menu bar to the bottom so it's REACHABLE
