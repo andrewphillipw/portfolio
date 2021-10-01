@@ -1,0 +1,173 @@
+Sept 30, 2021
+I. Arguments vs Parameters
+
+function foo(param1, param2) {
+    // do something
+}
+foo(10, 20);
+
+arguments are 10 & 20, while parameters are param1 & param2
+
+II. Spread Operator: ... 
+
+var myArray = [5, 10, 50];
+Math.max(myArray);    // Error: NaN
+Math.max.apply(Math, myArray);    // 50
+
+apply() allows max to handle arrays
+
+III. Rest Parameters: turns parameters into an array
+
+function myFunction(...options) {
+     return options;
+}
+myFunction('a', 'b', 'c');      // ["a", "b", "c"]
+
+A rest parameter should be used with variadic functions
+(varying num of args).
+
+function checkSubstrings(string, ...keys) {
+  for (var key of keys) {
+    if (string.indexOf(key) === -1) {
+      return false;
+    }
+  }
+  return true;
+}
+checkSubstrings('this is a string', 'is', 'this');   // true
+
+However, the rest parameter needs to be the last one and 
+no more than two rest parameters per functions.
+
+IV. Destructuring
+
+Extract values from arrays & objects assigning them to variables.
+
+function initiateTransfer({protocol, port, delay, retries, timeout, log}) {
+     // code to initiate transfer
+};
+var options = {
+  protocol: 'http',
+  port: 800,
+  delay: 150,
+  retries: 10,
+  timeout: 500,
+  log: true
+}
+initiateTransfer(options);
+
+This makes it easier to see what is going on.
+
+CORE CONCEPTS OR BUILDING BLOCKS
+
+1) Functions - a block of code that can be referenced by name (mini-program).
+Most functions will return some sort of variable (int, string, array).
+    a) declaration
+    function hello(){
+        console.log('Hello World!');
+    }
+    b) constructor
+    const hi = new Function('Hello World!');
+    c) invoking a function
+    hello();
+    //you can pass arguments too
+    add(2, 3);
+2) Loops -
+    a) while loop - used when num of iterations uncertain
+    let n = 1;
+    while(n>0){
+        console.log('Hello');
+        n++;
+    }
+    b) do-while - will run at least once with an uncertain num of iterations
+    let r = 0;
+    let win = false;
+    do {
+        console.log('Round '+toString(r));
+        if(match_won()){
+            win = true;
+            console.log('Advance to the next round!');
+        }else{
+            win = false;
+            console.log('Better odds next time.');
+        }
+    } while(win);
+    c) for loop - will run a specific number of times
+    //nested for loop to make a times table
+    for(let i=1 ; i<13 ; i++){
+        for(let j=1 ; j<13 ; j++){
+            console.log(`${j} multiplied by ${i} is ${i*j}`);
+        }
+    }
+
+    d) infinite loop - when conditional statement never reached; memory leak
+    //often done by mistake
+    let count = 0;
+    while (count < 10)
+    {
+        console.log('Apples, Oranges, Pumpkin Pie');
+    }
+    //it needs a count++
+    
+3) Logic -
+    a) if statements
+    if (landOwner) {
+        can_vote = true;
+        hold_office = true;
+    }
+    b) else and if-else statements
+    else if (merchant) {
+        can_vote = true;
+        hold_office = false;
+    }
+    else
+    {
+        can_vote = false;
+    }
+    c) ternary operator (short-hand)
+    (num % 2 == 0) ? return 'even' : return 'odd'; 
+    
+4) Arrays - zero-indexed like a bookshelf you can place multiple books.
+Another way to think of it is a calendar. There's usually 30 days but
+each of these days may have a no events or a lot of events.
+    a) conventional array - an ordered list of values
+    const myArray = new Array();
+    
+    const avengers = ['Captain America', 'Iron Man', 'Thor', 'Hulk'];
+    
+    avengers.length;
+    avengers[avengers.length - 1];
+    avengers.pop();
+    avengers.push('Hawkeye');
+    avengers.shift();
+    avengers.unshift('Captain America');
+    avengers.join(' & ');
+    avengers.splice(3, 1, 'Black Widow');
+    avengers.reverse();
+    avengers.sort();
+    'Black Widow', 'Captain America', 'Hawkeye', 'Hulk', 'Iron Man', 'Thor'
+    
+    b) Set - way of keeping a list of key and value pairs, and are similar to
+    “hashes”, or“hash tables” or “dictionaries” in other programming languages.
+    Main advantage is fast-searching compared to other data structures.
+    
+    const list = new Set();
+    list.add(2).add(3).add(4);
+    list.delete(4);
+    list.size();
+    
+    c) Map - way of keeping a list of key and value pairs, and are similar to
+    “hashes”, or“hash tables” or “dictionaries” in other programming languages.
+    
+    const romanNumerals = new Map();
+    romanNumerals.set(1,'I');
+    romanNumerals.set(2,'II').set(3,'III').set(4,'IV').set(5,'V');
+    romanNumerals.has(5);
+    romanNumerals.delete('IV');
+    romanNumerals.clear();
+    
+    d) memory leak - occurs when a program retains references to values that can no
+    longer be accessed in its memory. This means that memory is being used to store
+    values that are no longer required by the program, effectively wasting system
+    resources.
+
