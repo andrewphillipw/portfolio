@@ -1,0 +1,292 @@
+Forms 
+Made from the <form> element, and they contain input fields, menus, or buttons.
+Before info was processed with PHP but now more is processed with Java script.
+
+<!doctype html>
+<html lang='en'>
+<head>
+    <meta charset='utf-8'>
+    <title>Search</title>
+</head>
+<body>
+    <form name='search' action='/search'>
+        <input name='searchInput'>
+        <button type='submit'>Search</button>
+    </form>
+<script src='main.js'></script>
+</body>
+</html>
+
+Acessing Forms
+const form = document.forms[0];
+
+const form = document.getElementsByTagname('form')[0];
+
+const form = document.forms.search;
+Use caution when using this method, because there can
+be name conflicts between form names and its methods.
+
+const form = document.forms['search'];
+
+Form Methods, Properties, & Events
+
+form.submit()
+
+form.reset()
+
+form.action = '/an/other.url'
+
+input.addEventListener('focus', function(){
+    if (input.value==='Search Here') {
+        input.value = '' 
+    }
+}, false);
+
+input.addEventListener('blur', function(){
+    if(input.value === '') {
+        input.value = 'Search Here';
+    } }, false);
+
+Placeholder Attribute (shows if form is empty)
+<input type='text' name='search-box' placeholder='Search Here'>
+
+Form Validation
+As important as good layout, form validation is the process of 
+ensuring correct info is entered: required & valid. These 
+are done by adding certain attributes, for example 'required'.
+
+<input type='text' id='heroName' name='heroName' autofocus placeholder='Your Super Hero Name' maxlength=32 required>
+
+form.addEventListener('submit',validate,false);
+
+function validate(event) {
+    const firstLetter = form.heroName.value[0];
+    if (firstLetter.toUpperCase() === 'X') {
+        event.preventDefault();
+        alert('Your name is not allowed to start with X!');
+    }
+}
+
+OOP (Object-Oriented Programming)
+Code is divided into objects with variables and methods.
+Here are some of the processes being used: constructors, classes, prototypes, public & private methods, inheritance, chaining functions, borrowing prototype methods, and the keywords this & that.
+
+3 Main Concepts of OOP
+1. Encapsulation - user does not need to know how 'on' button works within a device
+2. Polymorphism - an 'on' button can be mostly the same between devices
+3. Inheritance - add new features to an exisitng object (device)
+
+Constructor Functions
+const Dice = function(sides=6){
+    this.sides = sides;
+    this.roll = function() {
+        return Math.floor(this.sides * Math.random() + 1)
+    }
+}
+
+
+consconst literalObject = {};
+tructedObject = new Object();
+
+class Dice {
+    constructor(sides=6) {
+        this.sides = sides;
+    }
+
+    roll() {
+        return Math.floor(this.sides * Math.random() + 1)
+    }
+}
+
+    
+Mixin Functionality
+Sometimes with modularization objects might need to work with more harmony;
+an inheritance chain is too cumbersome so a mixin object is created. 
+
+Example: gun w/ person = soldier, gun w/ vehicle = tank
+
+const flight = {
+    fly() {
+        console.log(`Up, up and away! ${this.name} soars through the air!`);
+        return this;
+    }
+}
+
+const superSpeed = {
+    move() {
+        console.log(`${this.name} can move faster than a speeding bullet!`);
+        return this;
+    }  
+}
+
+const xRayVision = {
+    xray() {
+        console.log(`${this.name} can see right through you!`);
+        return this;
+    }  
+}
+
+This Keyword
+Value ofthispoints to the object calling a method.
+
+superman.findFriends = function(){
+    const that = this;
+    this.friends.forEach(function(friend) {
+        console.log(`${friend.name} is friends with ${that.name}`);
+    }
+    );
+}
+
+superman.findFriends();
+<<  Batman is friends with Superman
+    Wonder Woman is friends with Superman
+    Aquaman is friends with Superman
+    
+ask(name){
+    console.log('ask() invoked');
+    if(this.questions.length > 2) {
+    shuffle(this.questions);
+    this.question = this.questions.pop();
+    const options = [this.questions[0].realName, this.questions[1].realName, this.question.realName];
+    shuffle(options);
+    const question = `What is ${this.question.name}'s real name?`;
+    view.render(view.question,question);
+    view.render(view.response,view.buttons(options));
+    }
+    else {
+    this.gameOver();
+    }
+}
+
+Modern Java script Development
+Eventually programs I work on will be 1,000's of lines or even 10,000 lines, so I'll need to
+organize the code properly. These inlcude Libraries, Modular JavaScript, MVC frameworks, and package managers.
+
+Libraries - external methods used to run specific tasks.
+para.classList.add('important');
+const newPara = document.createElement('p');
+newPara.textContent = 'Another Paragraph';
+para.appendChild(newPara);
+
+Underscore & Lodash - small functions that provide features.
+
+Library Usage - sometime it's not worth setup time for 
+installing and keeping a librray.
+
+Model View Controller (MVC) Framework -
+Models - objects that aim for much reading, updating and deleting (known as CRUD tasks), stored on database
+Viewsprovide - visual representation of the model showing info.
+Controllers - linking models and views together by communicating with the user.
+
+const controller = {
+    watch(form) {
+        form.addEventListener('submit', (event) => {
+        event.preventDefault(); // prevent the form from being submitted
+        this.add(form.name.value);
+        }, false);
+    },
+
+    add(name) {
+        const item = new Item(name);
+        view.render(item);
+    }
+};
+
+const square = require('./squareFunction');
+DOM Model Code
+function square(x) {
+    return x * x;
+}
+
+function sum(array, callback) {
+    if(callback) {
+        array = array.map(callback);
+    }
+    return array.reduce((a,b) => a + b );
+}
+
+function variance(array) {
+    return sum(array,square)/array.length - square(mean(array))
+}
+
+function mean(array) {
+    return sum(array) / array.length;
+}
+
+export {
+    variance,
+    mean
+}
+<!doctype html>
+
+<style>body { min-height: 200px }</style>
+<img src="img/cat.png" id="cat" style="position: absolute">
+<img src="img/hat.png" id="hat" style="position: absolute">
+
+module.exports = x =>  x * x;
+
+<script>
+  let cat = document.querySelector("#cat");
+  `let hat = document.querySelector("#hat");
+  
+  
+  function square(x) {
+    return x * x;
+}
+
+function sum(array, callback) {
+    if(callback) {
+        array = array.map(callback);
+    }
+    return array.reduce((a,b) => a + b );
+}
+
+function variance(array) {
+    return sum(array,square)/array.length - square(mean(array))
+}
+
+function mean(array) {
+    return sum(array) / array.length;
+}
+
+export {
+    variance,
+    mean
+}
+
+  let angle = 0;
+  let lastTime = null;
+  function animate(time) {
+    if (lastTime != null) angle += (time - lastTime) * 0.001;
+    lastTime = time;
+    cat.style.top = (Math.sin(angle) * 40 + 40) + "px";
+    cat.style.left = (Math.cos(angle) * 200 + 230) + "px";
+
+    requestAnimationFrame(animate);
+  }
+  requestAnimationFrame(animate);
+</script>
+
+function square(x) {
+    return x * x;
+}
+
+function sum(array, callback) {
+    if(callback) {
+        array = array.map(callback);
+    }
+    return array.reduce((a,b) => a + b );
+}
+
+function variance(array) {
+    return sum(array,square)/array.length - square(mean(array))
+}
+
+function mean(array) {
+    return sum(array) / array.length;
+}
+
+export {
+    variance,
+    mean
+}
